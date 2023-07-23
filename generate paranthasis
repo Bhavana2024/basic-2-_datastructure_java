@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        generateParenthesisHelper(n, n, "", result);
+        return result;
+    }
+
+    private void generateParenthesisHelper(int leftCount, int rightCount, String current, List<String> result) {
+        if (leftCount == 0 && rightCount == 0) {
+            result.add(current);
+            return;
+        }
+
+        if (leftCount > 0) {
+            generateParenthesisHelper(leftCount - 1, rightCount, current + "(", result);
+        }
+
+        if (rightCount > leftCount) {
+            generateParenthesisHelper(leftCount, rightCount - 1, current + ")", result);
+        }
+    }
+}
