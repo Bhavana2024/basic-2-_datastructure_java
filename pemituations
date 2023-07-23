@@ -1,4 +1,6 @@
- List<List<Integer>> result = new ArrayList<>();
+ class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+         List<List<Integer>> result = new ArrayList<>();
         backtrack(nums, new ArrayList<>(), result);
         return result;
     }
@@ -16,3 +18,6 @@
             currentList.add(nums[i]);
             backtrack(nums, currentList, result);
             currentList.remove(currentList.size() - 1);
+    }
+}
+}
