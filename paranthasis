@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isValid(String s) {
+         HashMap<Character, Character> bracketMappings = new HashMap<>();
+        bracketMappings.put(')', '(');
+        bracketMappings.put('}', '{');
+        bracketMappings.put(']', '[');
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (bracketMappings.containsKey(c)) {
+                char top = stack.isEmpty() ? '#' : stack.pop();
+                if (top != bracketMappings.get(c)) {
+                    return false;
+                }
+            } else {
+                stack.push(c);
+            }
+        }
+
+        return stack.isEmpty();
+    }
+}
