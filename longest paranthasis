@@ -1,0 +1,21 @@
+int maxLength = 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1); // Initialize the stack with -1 to handle the case when there are no valid substrings
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '(') {
+                stack.push(i); // Push the index of an opening parenthesis
+            } else {
+                stack.pop(); // Pop the index of a balanced opening parenthesis
+
+                if (stack.isEmpty()) {
+                    stack.push(i); // Push the index of an unbalanced closing parenthesis
+                } else {
+                    maxLength = Math.max(maxLength, i - stack.peek()); // Calculate the length of the valid substring
+                }
+            }
+        }
+
+        return maxLength;
