@@ -1,0 +1,35 @@
+int[] result = {-1, -1};
+        
+        // Find the starting position of the target
+        result[0] = binarySearch(nums, target, true);
+        // Find the ending position of the target
+        result[1] = binarySearch(nums, target, false);
+        
+        return result;
+    }
+    
+    // Binary search to find the starting or ending position of the target
+    private int binarySearch(int[] nums, int target, boolean findStart) {
+        int left = 0;
+        int right = nums.length - 1;
+        int position = -1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (nums[mid] == target) {
+                position = mid;
+                
+                if (findStart) {
+                    right = mid - 1; // Continue searching on the left side for the starting position
+                } else {
+                    left = mid + 1; // Continue searching on the right side for the ending position
+                }
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return position;
