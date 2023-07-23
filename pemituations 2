@@ -1,4 +1,6 @@
- List<List<Integer>> result = new ArrayList<>();
+ class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums); // Sort the array to handle duplicates
         backtrack(nums, new boolean[nums.length], new ArrayList<>(), result);
         return result;
@@ -19,3 +21,6 @@
             backtrack(nums, used, currentList, result);
             currentList.remove(currentList.size() - 1);
             used[i] = false;
+    }
+    }
+}
