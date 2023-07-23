@@ -1,0 +1,36 @@
+List<Integer> result = new ArrayList<>();
+        if (s == null || s.isEmpty() || words == null || words.length == 0) {
+            return result;
+        }
+
+        int wordLength = words[0].length();
+        int totalLength = wordLength * words.length;
+
+        Map<String, Integer> wordCountMap = new HashMap<>();
+        for (String word : words) {
+            wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+        }
+
+        for (int i = 0; i <= s.length() - totalLength; i++) {
+            Map<String, Integer> tempMap = new HashMap<>(wordCountMap);
+
+            for (int j = 0; j < words.length; j++) {
+                String sub = s.substring(i + j * wordLength, i + (j + 1) * wordLength);
+                if (tempMap.containsKey(sub)) {
+                    int count = tempMap.get(sub);
+                    if (count == 1) {
+                        tempMap.remove(sub);
+                    } else {
+                        tempMap.put(sub, count - 1);
+                    }
+                } else {
+                    break;
+                }
+            }
+
+            if (tempMap.isEmpty()) {
+                result.add(i);
+            }
+        }
+
+        return result;
