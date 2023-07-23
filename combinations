@@ -1,0 +1,40 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        private final String[] mapping = {
+        "",   
+        "",    
+        "abc",  
+        "def", 
+        "ghi", 
+        "jkl",   
+        "mno",  
+        "pqrs",   
+        "tuv","wxyz"  
+    };
+
+    public List<String> letterCombinations(String digits) {
+        List<String> result = new ArrayList<>();
+        if (digits == null || digits.isEmpty()) {
+            return result;
+        }
+        backtrack("", digits, result);
+        return result;
+    }
+
+    private void backtrack(String combination, String nextDigits, List<String> result) {
+        if (nextDigits.isEmpty()) {
+            result.add(combination);
+            return;
+        }
+
+        char digit = nextDigits.charAt(0);
+        String letters = mapping[digit - '0'];
+
+        for (char letter : letters.toCharArray()) {
+            backtrack(combination + letter, nextDigits.substring(1), result);
+        }
+    }
+}
+}
+        
+    
