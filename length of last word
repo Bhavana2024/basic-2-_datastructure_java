@@ -1,0 +1,16 @@
+int length = 0;
+        int n = s.length();
+        int i = n - 1;
+
+        // Ignore trailing spaces
+        while (i >= 0 && s.charAt(i) == ' ') {
+            i--;
+        }
+
+        // Calculate the length of the last word
+        while (i >= 0 && s.charAt(i) != ' ') {
+            length++;
+            i--;
+        }
+
+        return length;
